@@ -1,5 +1,6 @@
 import quantstats as qs
 
+
 qs.extend_pandas()
 
 index = {"SPY": 1.3, "AGG": -.3}
