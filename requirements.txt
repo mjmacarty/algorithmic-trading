@@ -1,0 +1,5 @@
+matplotlib
+pandas==1.4.4
+pandas-datareader
+quantstats
+yfinance
