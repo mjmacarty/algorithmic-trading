@@ -1,5 +1,7 @@
+alpaca-py 
 matplotlib
 pandas==1.4.4
 pandas-datareader
 quantstats
+requests
 yfinance
