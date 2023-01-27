@@ -1,5 +1,6 @@
 alpaca-py 
 matplotlib
+openbb
 pandas==1.4.4
 pandas-datareader
 quantstats
