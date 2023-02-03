@@ -1,0 +1,2 @@
+time,strategy,exchange,symbol,side,sec_type,type,status,price,filled_quantity,multiplier,trade_cost
+2022-01-03 09:30:00-05:00,BuyHold,,GOOG,buy,stock,market,fill,145.07449340820312,687,1,0.0

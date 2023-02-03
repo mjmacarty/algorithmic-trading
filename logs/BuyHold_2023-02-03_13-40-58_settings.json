@@ -1,0 +1,1 @@
+{"name": "BuyHold", "backtesting_start": "2022-01-01 00:00:00-05:00", "backtesting_end": "2022-12-31 00:00:00-05:00", "budget": null, "risk_free_rate": null, "minutes_before_closing": 5, "minutes_before_opening": 60, "sleeptime": 1, "auto_adjust": false, "quote_asset": "USD", "benchmark_asset": "SPY", "starting_positions": "None", "parameters": {}}
