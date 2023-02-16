@@ -1,7 +1,8 @@
-alpaca-py 
+alpaca-py
+lumibot
 matplotlib
-openbb
-pandas==1.4.4
+numpy
+pandas
 pandas-datareader
 quantstats
 requests
