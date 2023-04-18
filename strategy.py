@@ -2,11 +2,11 @@ import datetime as dt
 from dateutil.relativedelta import relativedelta
 import os
 import pandas as pd
-import pandas_datareader as pdr
+# import pandas_datareader as pdr
 import numpy as np
 import quantstats as qs
 import webbrowser as web
-
+import yfinance as yf
 
 
 def ma_cross_strategy(ticker, slow=200, fast=50, end=None, period=3):
@@ -14,7 +14,7 @@ def ma_cross_strategy(ticker, slow=200, fast=50, end=None, period=3):
         end = dt.date.today()
     start = end - relativedelta(years=period)
 
-    data = pd.DataFrame(pdr.get_data_yahoo(ticker, start=start, end=end)["Close"])
+    data = pd.DataFrame(yf.download(ticker, start=start, end=end)["Close"])
     data[f'{fast}-day'] = data.Close.rolling(fast).mean()
     data[f'{slow}-day'] = data.Close.rolling(slow).mean()
     data['returns'] = np.log(data.Close).diff()

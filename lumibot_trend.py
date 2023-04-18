@@ -6,7 +6,6 @@ from lumibot.strategies import Strategy
 from lumibot.traders import Trader
 import numpy as np
 import pandas as pd
-import yfinance as yf
 
 
 class Trend(Strategy):
@@ -28,24 +27,27 @@ class Trend(Strategy):
         gld['21-day'] = gld['close'].rolling(21).mean()
         gld['Signal'] = np.where(np.logical_and(gld['9-day'] > gld['21-day'],
                                                 gld['9-day'].shift(1) < gld['21-day'].shift(1)),
-                                 1, None)
+                                 "BUY", None)
         gld['Signal'] = np.where(np.logical_and(gld['9-day'] < gld['21-day'],
                                                 gld['9-day'].shift(1) > gld['21-day'].shift(1)),
-                                 -1, gld['Signal'])
+                                 "SELL", gld['Signal'])
         self.signal = gld.iloc[-1].Signal
         
         symbol = "GLD"
         quantity = 200
-        if self.signal == 1:
+        if self.signal == 'BUY':
             pos = self.get_position(symbol)
             if pos is not None:
                 self.sell_all()
+                
             order = self.create_order(symbol, quantity, "buy")
             self.submit_order(order)
-        elif self.signal == -1:
+
+        elif self.signal == 'SELL':
             pos = self.get_position(symbol)
             if pos is not None:
                 self.sell_all()
+                
             order = self.create_order(symbol, quantity, "sell")
             self.submit_order(order)
 
@@ -61,8 +63,8 @@ if __name__ == "__main__":
         bot.add_strategy(strategy)
         bot.run_all()
     else:
-        start = datetime(2022, 1, 1)
-        end = datetime(2022, 12, 31)
+        start = datetime(2022, 4, 15)
+        end = datetime(2023, 4, 15)
         Trend.backtest(
             YahooDataBacktesting,
             start,
