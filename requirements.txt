@@ -3,7 +3,6 @@ lumibot
 matplotlib
 numpy
 pandas
-pandas-datareader
 quantstats
 requests
 yfinance
