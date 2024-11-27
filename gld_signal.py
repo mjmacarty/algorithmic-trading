@@ -4,7 +4,7 @@ import pandas_datareader as pdr
 import yfinance as yf
 
 
-gld = pd.DataFrame(yf.download("GLD", "2022-01-01")['Close'])
+gld = pd.DataFrame(yf.download("GLD", "2023-11-15")['Close'])
 gld['9-day'] = gld['Close'].rolling(9).mean()
 gld['21-day'] = gld['Close'].rolling(21).mean()
 gld['Signal'] = np.where(np.logical_and(gld['9-day'] > gld['21-day'],
