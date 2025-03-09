@@ -12,9 +12,9 @@ class ML:
         self.symbol = symbol
         self.start = start
         self.end = end
-        self.data = yf.download(symbol, start=self.start, end=self.end )['Close']
+        self.data = yf.download(symbol, start=self.start, end=self.end )[('Close',self.symbol)]
         self.data = pd.DataFrame(self.data)
-        self.data['returns'] = np.log(self.data['Close']).diff()
+        self.data['returns'] = np.log(self.data[('Close',self.symbol)]).diff()
 
 
     def create_lags(self, lags):
@@ -56,9 +56,9 @@ class ML:
     def forecast(self, lags):
         model, columns, split = self.train_model(lags)
         forecast = self.data.iloc[-1].to_list()
-        forecast = forecast[1:]
+        forecast.pop()
         direction = 1 if self.data['returns'].iloc[-1] > 0 else 0
-        forecast.append(direction)
+        forecast.insert(0,direction)
         forecast = pd.DataFrame(forecast[:lags], columns).T
         return model.predict(forecast).item(), model.predict_proba(forecast)[0][1]
 
