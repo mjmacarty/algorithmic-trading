@@ -1,0 +1,12 @@
+Prompts:
+
+Make a bot that trades TQQQ based on the 200 day moving average. 
+When TQQQ is above its 200 day moving average use all the cash 
+in the account to buy TQQQ, and when it’s below the 200 day moving 
+average, sell and just hold cash
+
+
+
+
+
+Develop a day trading scalping strategy for AGG based on minute data momentum
